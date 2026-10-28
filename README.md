@@ -1,55 +1,104 @@
-# Bank Marketing Campaign Response Analysis & Prediction
+# CampaignIQ — Bank Marketing Response Prediction
 
-## Project Overview
+A machine learning web application that predicts whether a customer is likely to subscribe to a bank term deposit based on historical marketing campaign data.
 
-This project aims to analyze bank marketing campaign data to
-understand customer response patterns and develop machine learning
-models to predict whether a customer will subscribe to a term deposit.
+## Overview
 
-The project uses Python, data analysis, statistical hypothesis testing,
-and machine learning techniques to explore campaign performance.
+CampaignIQ combines data analysis, statistical techniques, and machine learning to explore customer response patterns and estimate subscription probability through an interactive Flask application.
 
-## Objectives
+## Key Features
 
-- Analyze customer characteristics and campaign response rates.
-- Perform exploratory data analysis (EDA).
-- Apply statistical hypothesis testing to compare response rates
-  across customer groups.
-- Build classification models to predict customer responses.
-- Compare model performance using appropriate evaluation metrics.
-- Derive meaningful insights from the analysis.
+* **Data Analysis:** Data preprocessing, exploratory data analysis (EDA), and statistical analysis.
+* **Machine Learning:** Tuned Random Forest classifier for customer response prediction.
+* **Interactive Web App:** Flask-based interface for entering customer details and viewing predictions.
+* **Probability Estimates:** Displays the predicted outcome and estimated subscription probability.
+* **Responsive UI:** Custom beige-and-espresso design with a homepage, prediction form, and results page.
+
+## Model Performance
+
+The tuned Random Forest model was evaluated on a held-out test dataset.
+
+| Metric                   |  Score |
+| ------------------------ | -----: |
+| Accuracy                 | 86.01% |
+| Precision (Subscription) |  42.5% |
+| Recall (Subscription)    |  55.5% |
+| F1-Score (Subscription)  |  48.1% |
+
+*The dataset is imbalanced, so accuracy alone does not fully represent model performance. Precision, recall, and F1-score provide additional insight into the model's ability to identify potential subscribers.*
+
+**Feature selection:** Call duration (`duration`) was excluded because it is unavailable before a marketing call. This keeps predictions focused on information available before contact.
+
+## Tech Stack
+
+* **Languages:** Python, SQL
+* **Data Analysis:** Pandas, NumPy, Matplotlib, Seaborn
+* **Machine Learning:** Scikit-learn, Random Forest, GridSearchCV
+* **Web Application:** Flask, HTML, CSS, Bootstrap
+* **Model Persistence:** Joblib
+* **Development:** Jupyter Notebook, VS Code, Git, GitHub
+
+## Project Structure
+
+```text
+campaign-response-analysis/
+├── app.py
+├── requirements.txt
+├── data/
+│   └── bank-full.csv
+├── models/
+│   └── bank_marketing_rf_model.pkl
+├── notebooks/
+│   ├── 01_data_preprocessing.ipynb
+│   ├── 02_eda_analysis.ipynb
+│   ├── 03_statistical_analysis.ipynb
+│   └── 04_machine_learning.ipynb
+├── templates/
+│   ├── index.html
+│   ├── predict.html
+│   └── result.html
+└── static/
+    ├── css/
+    │   └── style.css
+    └── js/
+        └── script.js
+```
+
+## Run Locally
+
+**1. Clone the repository**
+
+```bash
+git clone <your-repository-url>
+cd campaign-response-analysis
+```
+
+**2. Install dependencies**
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+**3. Start the Flask application**
+
+```bash
+python app.py
+```
+
+**4. Open the application**
+
+Visit `http://127.0.0.1:5000` in your browser.
+
+Ensure the dataset and saved model are available at the paths expected by the application.
 
 ## Dataset
 
-Source: UCI Machine Learning Repository
+The project uses the Bank Marketing dataset, containing customer information and historical campaign outcomes. The target variable, `y`, indicates whether a customer subscribed to a term deposit.
 
-Dataset: Bank Marketing
+## Limitations
 
-Link: https://archive.ics.uci.edu/dataset/222/bank+marketing
+Predictions are estimates based on historical data, not guarantees of customer behavior. Model probabilities may not be perfectly calibrated, and results should be interpreted alongside other relevant information.
 
-The dataset contains information about a bank's direct marketing
-campaigns.
-
-## Tools and Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- SciPy
-- Scikit-learn
-- Jupyter Notebook
-
-## Project Workflow
-
-1. Data Understanding
-2. Data Cleaning and Preparation
-3. Exploratory Data Analysis
-4. Statistical Hypothesis Testing
-5. Feature Engineering
-6. Classification Model Development
-7. Model Evaluation
-8. Business Insights and Conclusions
+---
 
 

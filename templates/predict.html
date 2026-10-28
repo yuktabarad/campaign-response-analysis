@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Customer Prediction | CampaignIQ</title>
+
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/style.css') }}"
+>
+
+
+</head>
+
+<body>
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">CampaignIQ</a>
+        <a class="btn btn-outline-light" href="/">Back to Home</a>
+    </div>
+</nav>
+
+<!-- Page Heading -->
+<section class="prediction-section section-padding">
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <p class="section-label">MACHINE LEARNING</p>
+            <h1>Customer Response Prediction</h1>
+
+            <p class="prediction-description">
+                Enter customer details to estimate the likelihood
+                of subscribing to a bank term deposit.
+            </p>
+        </div>
+
+        <!-- Customer Form -->
+        <div class="prediction-form-card mx-auto">
+
+            <div class="form-heading mb-4">
+                <h4>Customer Information</h4>
+                <p>Complete the fields below to generate a prediction.</p>
+            </div>
+
+            <form action="{{ url_for('predict') }}" method="POST">
+
+                <div class="row g-4">
+
+                    <div class="col-md-4">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="number" class="form-control"
+                               id="age" name="age" min="18" max="100"
+                               value="35" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="job" class="form-label">Job</label>
+                        <select class="form-select" id="job" name="job" required>
+                            <option value="admin.">Administrative</option>
+                            <option value="blue-collar">Blue-collar</option>
+                            <option value="entrepreneur">Entrepreneur</option>
+                            <option value="housemaid">Housemaid</option>
+                            <option value="management" selected>Management</option>
+                            <option value="retired">Retired</option>
+                            <option value="self-employed">Self-employed</option>
+                            <option value="services">Services</option>
+                            <option value="student">Student</option>
+                            <option value="technician">Technician</option>
+                            <option value="unemployed">Unemployed</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="marital" class="form-label">Marital Status</label>
+                        <select class="form-select" id="marital" name="marital" required>
+                            <option value="married" selected>Married</option>
+                            <option value="single">Single</option>
+                            <option value="divorced">Divorced</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="education" class="form-label">Education</label>
+                        <select class="form-select" id="education" name="education" required>
+                            <option value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                            <option value="tertiary" selected>Tertiary</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="default" class="form-label">Credit in Default?</label>
+                        <select class="form-select" id="default" name="default" required>
+                            <option value="no" selected>No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="balance" class="form-label">Account Balance</label>
+                        <input type="number" class="form-control"
+                               id="balance" name="balance"
+                               value="2500" required>
+                        <small class="form-text">
+                            Use the currency represented in the dataset.
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="housing" class="form-label">Housing Loan?</label>
+                        <select class="form-select" id="housing" name="housing" required>
+                            <option value="no">No</option>
+                            <option value="yes" selected>Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="loan" class="form-label">Personal Loan?</label>
+                        <select class="form-select" id="loan" name="loan" required>
+                            <option value="no" selected>No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="contact" class="form-label">Contact Method</label>
+                        <select class="form-select" id="contact" name="contact" required>
+                            <option value="cellular" selected>Cellular</option>
+                            <option value="telephone">Telephone</option>
+                            <option value="unknown">Unknown</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="day" class="form-label">Last Contact Day</label>
+                        <input type="number" class="form-control"
+                               id="day" name="day" min="1" max="31"
+                               value="15" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="month" class="form-label">Last Contact Month</label>
+                        <select class="form-select" id="month" name="month" required>
+                            <option value="jan">January</option>
+                            <option value="feb">February</option>
+                            <option value="mar">March</option>
+                            <option value="apr">April</option>
+                            <option value="may">May</option>
+                            <option value="jun">June</option>
+                            <option value="jul">July</option>
+                            <option value="aug">August</option>
+                            <option value="sep">September</option>
+                            <option value="oct" selected>October</option>
+                            <option value="nov">November</option>
+                            <option value="dec">December</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="campaign" class="form-label">
+                            Contacts During This Campaign
+                        </label>
+                        <input type="number" class="form-control"
+                               id="campaign" name="campaign" min="1"
+                               value="1" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="pdays" class="form-label">
+                            Days Since Previous Contact
+                        </label>
+                        <input type="number" class="form-control"
+                               id="pdays" name="pdays" min="-1"
+                               value="-1" required>
+                        <small class="form-text">
+                            Enter -1 if there was no previous contact.
+                        </small>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="previous" class="form-label">
+                            Contacts Before This Campaign
+                        </label>
+                        <input type="number" class="form-control"
+                               id="previous" name="previous" min="0"
+                               value="0" required>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="poutcome" class="form-label">
+                            Previous Campaign Outcome
+                        </label>
+                        <select class="form-select" id="poutcome" name="poutcome" required>
+                            <option value="unknown" selected>Unknown / No previous outcome</option>
+                            <option value="success">Success</option>
+                            <option value="failure">Failure</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100 mt-5">
+                    Predict Customer Response
+                </button>
+
+                <p class="form-disclaimer mt-3 mb-0">
+                    This model provides an estimate based on historical data,
+                    not a guarantee of customer behavior.
+                </p>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container text-center">
+        <p class="mb-1">CampaignIQ — Bank Marketing Analysis</p>
+        <small>Machine Learning Portfolio Project</small>
+    </div>
+</footer>
+
+
+</body>
+</html>
