@@ -91,6 +91,27 @@ Visit `http://127.0.0.1:5000` in your browser.
 
 Ensure the dataset and saved model are available at the paths expected by the application.
 
+## Live Demo
+
+🚀 **CampaignIQ is deployed and publicly accessible!**
+
+Try the application here:
+
+**[Launch CampaignIQ](https://campaign-response-analysis.onrender.com/)**
+
+The application is hosted on Render and provides an interactive interface for predicting customer subscription likelihood using a trained Random Forest model.
+
+### Deployment Details
+
+* **Platform:** Render
+* **Framework:** Flask
+* **Production Server:** Gunicorn
+* **Source Code:** GitHub
+* **Deployment:** Automatic deployment from the `main` branch.
+
+**Note:** The application uses Render's free hosting plan. The service may spin down after inactivity, so the first request can take longer to load.
+
+
 ## Dataset
 
 The project uses the Bank Marketing dataset, containing customer information and historical campaign outcomes. The target variable, `y`, indicates whether a customer subscribed to a term deposit.
