@@ -3,5 +3,5 @@ joblib==1.5.3
 numpy
 pandas
 scikit-learn==1.9.0
-gunicorn]
+gunicorn
 pyarrow
